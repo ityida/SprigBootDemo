@@ -18,6 +18,11 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    /**
+     * 保存用户信息
+     * @param user
+     * @return
+     */
     @PutMapping("save")
     public ResponseResult saveUser(@RequestParam("user") User user) {
         ResponseResult responseResult = userService.saveUser(user);

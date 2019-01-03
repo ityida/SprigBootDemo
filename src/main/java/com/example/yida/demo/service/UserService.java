@@ -21,11 +21,20 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
+    /**
+     * 保存用户信息
+     * @param user
+     * @return
+     */
     public ResponseResult saveUser(User user) {
         User save = userRepository.save(user);
         return new ResponseResult(CommonCode.SUCCESS);
     }
 
+    /**
+     * 查询所有用户
+     * @return
+     */
     public QueryResult<User> findAll() {
         List<User> users = userRepository.findAll();
 

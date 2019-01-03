@@ -1,16 +1,26 @@
 package com.example.yida.demo.controller;
 
+import com.example.yida.demo.common.model.response.QueryResult;
 import com.example.yida.demo.common.utils.BCryptUtil;
+import com.example.yida.demo.dao.UserRepository;
 import com.example.yida.demo.pojo.User;
 import com.example.yida.demo.service.UserService;
+import lombok.ToString;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.querydsl.QPageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Describle:
@@ -22,27 +32,53 @@ import java.util.List;
 public class UserControllerTest {
     @Resource
     UserService userService;
+    @Autowired
+    UserRepository userRepository;
+
+
+    @Test
+    public void testPageQuery() throws Exception {
+        int page = 1, size = 3;
+        Sort sort = new Sort(Sort.Direction.DESC, "id");
+        Pageable pageable = new PageRequest(page, size, sort);
+        Page<User> all = userRepository.findAll(pageable);
+        System.out.println(all);
+        // userRepository.findByUserName("testName", pageable);
+    }
+
+    @Test
+    public void findById() {
+        Optional<User> optionalUser = userRepository.findById(3L);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            System.out.println(user);
+        }
+    }
+
+
+    @Test
+    public void findByLoginName() {
+        List<User> users = userRepository.findByLoginName("damimi");
+        System.out.println(users);
+    }
 
     @Test
     public void saveUser() {
         User user = new User();
-        user.setId(5L);
-        user.setUserName("dami");
-        user.setLoginName("damimi");
-        user.setPassWord(BCryptUtil.encode("111111"));
+        // user.setId(5L);
+        user.setUserName("dami1166");
+        user.setLoginName("damimi12");
+        user.setPassWord(BCryptUtil.encode("22222266"));
 
-        User user1 = new User();
-        BeanUtils.copyProperties(user, user1);
-        user1.setId(6L);
-        user1.setLoginName("11");
-        userService.saveUser(user1);
+        userService.saveUser(user);
 
     }
 
     @Test
     public void findAll() {
-        List<User> all = (List<User>) userService.findAll();
-        System.out.println(all);
+        QueryResult<User> all = userService.findAll();
+        List<User> list = all.getList();
+        System.out.println(list);
     }
 
     @Test
