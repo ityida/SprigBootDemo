@@ -2,7 +2,6 @@ package com.example.yida.demo.dao;
 
 import com.example.yida.demo.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 /**
  * @Describle:

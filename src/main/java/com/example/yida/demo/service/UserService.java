@@ -8,6 +8,7 @@ import com.example.yida.demo.dao.UserRepository;
 import com.example.yida.demo.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class UserService {
      * @param user
      * @return
      */
+    @Transactional
     public ResponseResult saveUser(User user) {
         User save = userRepository.save(user);
         return new ResponseResult(CommonCode.SUCCESS);
