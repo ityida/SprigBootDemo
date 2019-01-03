@@ -12,10 +12,11 @@ import java.util.List;
  * @Author:zhangyifei
  * @Date:2019/1/2
  */
-public interface UserRepository extends JpaRepository<User,Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
     /**
      * 根据登录名查询
+     *
      * @param loginName
      * @return
      */
@@ -23,6 +24,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     /**
      * 分页查询
+     *
      * @param pageable
      * @return
      */

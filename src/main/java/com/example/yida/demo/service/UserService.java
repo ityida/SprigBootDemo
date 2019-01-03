@@ -23,6 +23,7 @@ public class UserService {
 
     /**
      * 保存用户信息
+     *
      * @param user
      * @return
      */
@@ -33,6 +34,7 @@ public class UserService {
 
     /**
      * 查询所有用户
+     *
      * @return
      */
     public QueryResult<User> findAll() {

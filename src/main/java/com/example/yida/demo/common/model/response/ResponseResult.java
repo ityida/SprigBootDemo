@@ -19,25 +19,26 @@ public class ResponseResult implements Response {
     boolean success = SUCCESS;
 
     /**
-     *操作代码
+     * 操作代码
      */
     int code = SUCCESS_CODE;
 
     /**
-     *提示信息
+     * 提示信息
      */
     String message;
 
-    public ResponseResult(ResultCode resultCode){
+    public ResponseResult(ResultCode resultCode) {
         this.success = resultCode.success();
         this.code = resultCode.code();
         this.message = resultCode.message();
     }
 
-    public static ResponseResult SUCCESS(){
+    public static ResponseResult SUCCESS() {
         return new ResponseResult(CommonCode.SUCCESS);
     }
-    public static ResponseResult FAIL(){
+
+    public static ResponseResult FAIL() {
         return new ResponseResult(CommonCode.FAIL);
     }
 
