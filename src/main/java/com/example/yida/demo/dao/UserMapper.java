@@ -11,5 +11,10 @@ import org.apache.ibatis.annotations.Param;
  */
 @Mapper
 public interface UserMapper {
-    // int count saveUser(@Param("user") User user);
+    /**
+     * 根据id查询用户
+     * @param id
+     * @return
+     */
+    User findById(Long id);
 }

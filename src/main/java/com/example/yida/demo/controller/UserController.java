@@ -24,7 +24,7 @@ public class UserController {
      * @return
      */
     @PutMapping("save")
-    public ResponseResult saveUser(@RequestParam("user") User user) {
+    public ResponseResult saveUser(@RequestParam("mapper") User user) {
         ResponseResult responseResult = userService.saveUser(user);
         return responseResult;
     }
